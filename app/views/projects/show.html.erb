@@ -1,0 +1,14 @@
+<% @title = "TRENTO BUS SERVICE" %>
+
+<title>
+<% if content_for? (:title)%>
+  <%= yield(:title)%>
+<%else%>
+  <%=@title%>
+<%end%>
+</title>
+
+<%= link_to "Edit Project", edit_project_path(@project)%>
+<h2><%= link_to "Delete Project", project_path(@project),method: :delete%></h2>
+<h3> The name is: <%=@project.name%></h3>
+<p>Description is: <%=@project.description%></p>
