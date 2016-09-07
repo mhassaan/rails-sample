@@ -1,5 +1,5 @@
-<%= form_for project do |f| %>
-  <% if project.errors.any?%>
+<%= simple_form_for project do |f| %>
+  <!-- <% if project.errors.any?%>
     <div id="error_explanation">
       <h2><%= pluralize(project.errors.count,"error")%> prohibited this projcet form being saved</h2>
       <ul>
@@ -9,17 +9,10 @@
       </ul>
     </div>
 
-  <%end%>
-  <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name%>
-  </p>
+  <%end%> -->
+  <%= f.input :name %><br>
+  <%= f.input :description%><br>
 
-  <p>
-    <%= f.label :description%><br>
-    <%= f.text_field :description%>
-  </p>
-
-  <%= f.submit %>
+  <%= f.button :submit, class: 'btn btn-primary' %>
 
 <%end%>

@@ -8,7 +8,19 @@
 <%end%>
 </title>
 
-<%= link_to "Edit Project", edit_project_path(@project)%>
-<h2><%= link_to "Delete Project", project_path(@project),method: :delete%></h2>
-<h3> The name is: <%=@project.name%></h3>
-<p>Description is: <%=@project.description%></p>
+<header>
+  <h1><%=@project.name%></h1>
+  <ul class="actions">
+    <li><%= link_to "Edit Project", edit_project_path(@project),class: 'edit'%></li>
+    <li><%= link_to "New Ticket", new_project_ticket_path(@project),class: 'show'%></li>
+    <li><%= link_to "Delete Project", project_path(@project),method: :delete, data:{confirm: "Are you sure you want to delete this project?"},class: 'delete'%></li>
+  </ul>
+</header>
+<ul id="tickets">
+  <% @project.tickets.each do |ticket| %>
+    <li>
+      #<%= ticket.id %> -
+      <%= link_to ticket.name, [@project, ticket] %>
+    </li>
+  <% end %>
+</ul>
