@@ -47,4 +47,10 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
+
+  #The include method will include the specified module into your tests,
+  #and the type option passed to it will make it so that this module is only included in tests that reside in spec/features
+  #You also need to tell Warden to reset itself after each test, which is done with the second line.
+  config.include Warden::Test::Helpers, type: :feature
+  config.after(type: :feature) {Warden.test_reset!}
 end
