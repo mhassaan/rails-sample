@@ -1,10 +1,11 @@
 require 'rails_helper'
 RSpec.feature "Users can view tickets" do
   before do
+    author = FactoryGirl.create(:user)
     metro = FactoryGirl.create(:project,name: 'Metro Train')
-    FactoryGirl.create(:ticket,project: metro,name: 'Ticket To Mars', description: 'Is this really gona come true?')
+    FactoryGirl.create(:ticket,project: metro,author: author,name: 'Ticket To Mars', description: 'Is this really gona come true?')
     metro = FactoryGirl.create(:project,name: 'Orange Train')
-    FactoryGirl.create(:ticket,project: metro,name: 'Ticket To Venus', description: 'Is this really gona come true?')
+    FactoryGirl.create(:ticket,project: metro,author: author,name: 'Ticket To Venus', description: 'Is this really gona come true?')
     visit '/'
   end
 
