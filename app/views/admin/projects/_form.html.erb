@@ -1,0 +1,18 @@
+<%= simple_form_for ([:admin,project]) do |f| %>
+  <!-- <% if project.errors.any?%>
+    <div id="error_explanation">
+      <h2><%= pluralize(project.errors.count,"error")%> prohibited this projcet form being saved</h2>
+      <ul>
+        <%project.errors.full_messages.each do |error|%>
+          <li><%=error%></li>
+        <%end%>
+      </ul>
+    </div>
+
+  <%end%> -->
+  <%= f.input :name %><br>
+  <%= f.input :description%><br>
+
+  <%= f.button :submit, class: 'btn btn-primary' %>
+
+<%end%>
