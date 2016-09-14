@@ -1,4 +1,5 @@
 require'rails_helper'
+require 'support/authorization_helpers'
 RSpec.feature "User can delete tickets" do
   let(:author){FactoryGirl.create(:user)}
   let(:project){FactoryGirl.create(:project)}
@@ -7,6 +8,8 @@ RSpec.feature "User can delete tickets" do
   end
 
   before do
+    login_as(author)
+    assign_role!(author,:manager,project)
     visit project_ticket_path(project,ticket)
   end
 

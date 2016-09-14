@@ -1,10 +1,11 @@
 require 'rails_helper'
-
+require 'support/authorization_helpers'
 RSpec.feature "Users can create new tickets" do
-  let!(:user){FactoryGirl.create(:user)}
+  let(:user){FactoryGirl.create(:user,:admin)}
   before do
     login_as(user)
     project = FactoryGirl.create(:project, name: 'Internet Explorer')
+    assign_role!(user,:viewer,project)
     visit project_path(project)
     click_link 'New Ticket'
   end
@@ -19,6 +20,15 @@ RSpec.feature "Users can create new tickets" do
     end
   end
 
+  scenario "with an attachment" do
+     fill_in "Name", with: 'Add documentation for blink tag'
+     fill_in "Description", with: 'Blink tag has speed attribute'
+     attach_file "File", "spec/fixtures/speed.txt"
+     click_button "Create Ticket"
+     within('#ticket') do
+       expect(page).to have_content "speed.txt"
+     end
+  end
   scenario "with invalid attributes" do
     click_button "Create Ticket"
     expect(page).to have_content "Ticket has not been created."

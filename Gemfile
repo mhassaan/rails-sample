@@ -26,6 +26,8 @@ gem "bootstrap-sass", "~> 3.3"
 gem "font-awesome-rails", "~> 4.3"
 gem "simple_form", "~> 3.1.0"
 gem "devise", "~> 3.4.1"
+gem "pundit", "~> 0.3.0"
+gem "carrierwave", "~> 0.10.0"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -43,6 +45,8 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem "rspec-rails", "~> 3.2.1"
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 group :test do

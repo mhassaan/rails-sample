@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'support/authorization_helpers'
 
 RSpec.feature "User can edit exisiting tickets" do
   let(:author){FactoryGirl.create(:user)}
@@ -8,6 +9,8 @@ RSpec.feature "User can edit exisiting tickets" do
   end
 
   before do
+    assign_role!(author, :viewer, project)
+    login_as(author)
     visit project_ticket_path(project,ticket)
     click_link "Edit Ticket"
   end

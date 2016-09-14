@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:archive,:show, :edit, :update, :destroy]
+  before_action :set_projects, only: [:new,:create,:edit,:update]
   def index
     @users = User.excluding_archived.order(:email)
   end
@@ -15,6 +16,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
+    ss
     if params[:user][:password].blank?
       params[:user].delete(:password)
     end
@@ -28,6 +30,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def create
+    ss
     @user = User.new(user_params)
     if @user.save
       flash[:notice] = "User has been created."
@@ -56,6 +59,10 @@ class Admin::UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def set_projects
+    @projects = Project.order(:name)
   end
 
 
